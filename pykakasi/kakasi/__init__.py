@@ -1,4 +1,4 @@
-from .kakasi import kakasi, wakati
+from .kakasi import Kakasi, Wakati
 from .kanji import J2
 from .properties import Configurations
 from .scripts import A2, H2, K2, Sym2
@@ -10,4 +10,4 @@ __author__ = 'Hiroshi Miura'
 __author_email__ = 'miurahr@linux.com'
 __url__ = 'http://github.com/miurahr/pykakasi'
 
-__all__ = ["kakasi", "wakati", "exceptions", "J2", "K2", "H2", "Sym2", "A2", "Configurations"]
+__all__ = ["Kakasi", "Wakati", "exceptions", "J2", "K2", "H2", "Sym2", "A2", "Configurations"]

@@ -35,7 +35,7 @@ from .properties import Ch
 from .scripts import A2, H2, K2, Sym2
 
 
-class kakasi:
+class Kakasi:
 
     _keys = ["J", "H", "K", "E", "a"]
     _values = ["a", "E", "H", "K"]
@@ -166,7 +166,7 @@ class kakasi:
         return otext
 
 
-class wakati(kakasi):
+class Wakati(Kakasi):
 
     _jconv = None
     _separator = " "

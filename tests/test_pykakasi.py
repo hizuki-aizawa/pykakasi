@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import pykakasi
+import pykakasi.kakasi
 import pytest
 
 
@@ -20,7 +20,7 @@ def test_kakasi_hepburn():
         (u"日本国民は、", "Nihonkokumin ha,")
     ]
 
-    kakasi = pykakasi.kakasi()
+    kakasi = pykakasi.kakasi.Kakasi()
     kakasi.setMode("H", "a")
     kakasi.setMode("K", "a")
     kakasi.setMode("J", "a")
@@ -50,7 +50,7 @@ def test_kakasi_kunrei():
         (u"日本国民は、", "Nihonkokumin ha,")
     ]
 
-    kakasi = pykakasi.kakasi()
+    kakasi = pykakasi.kakasi.Kakasi()
     kakasi.setMode("H", "a")
     kakasi.setMode("K", "a")
     kakasi.setMode("J", "a")
@@ -82,7 +82,7 @@ def test_kakasi_J2H():
         (u"苦々しい", u"にがにがしい")
     ]
 
-    kakasi = pykakasi.kakasi()
+    kakasi = pykakasi.kakasi.Kakasi()
     kakasi.setMode("H", None)
     kakasi.setMode("K", None)
     kakasi.setMode("J", "H")
@@ -107,7 +107,7 @@ def test_kakasi_J2K():
         (u"Alphabet 123 and 漢字", u"Alphabet 123 and カンジ")
     ]
 
-    kakasi = pykakasi.kakasi()
+    kakasi = pykakasi.kakasi.Kakasi()
     kakasi.setMode("H", None)
     kakasi.setMode("K", None)
     kakasi.setMode("J", "K")
@@ -127,7 +127,7 @@ def test_kakasi_H2K():
         (u"かんたん", u"カンタン"),
         (u"にゃ", u"ニャ")
     ]
-    kakasi = pykakasi.kakasi()
+    kakasi = pykakasi.kakasi.Kakasi()
     kakasi.setMode("H", "K")
     kakasi.setMode("S", " ")
     converter = kakasi.getConverter()
@@ -142,7 +142,7 @@ def test_kakasi_K2H():
         (u"カンタン", u"かんたん"),
         (u"ニャ", u"にゃ")
     ]
-    kakasi = pykakasi.kakasi()
+    kakasi = pykakasi.kakasi.Kakasi()
     kakasi.setMode("K", "H")
     converter = kakasi.getConverter()
     for case, result in TESTS:
@@ -156,7 +156,7 @@ def test_wakati():
         (u"ひらがな交じり文", u"ひらがな 交じり 文"),
         (u"漢字とひらがな交じり文", u"漢字 とひらがな 交じり 文")
     ]
-    wakati = pykakasi.wakati()
+    wakati = pykakasi.kakasi.Wakati()
     converter = wakati.getConverter()
     for case, result in TESTS:
         assert converter.do(case) == result
@@ -166,7 +166,7 @@ def test_katakana_furiagana():
     TESTS = [
         (u"変換前の漢字の脇に", u"変換前[ヘンカンマエ]の漢字[カンジ]の脇[ワキ]に")
     ]
-    kakasi = pykakasi.kakasi()
+    kakasi = pykakasi.kakasi.Kakasi()
     kakasi.setMode("H", None)
     kakasi.setMode("K", None)
     kakasi.setMode("J", "KF")
@@ -183,7 +183,7 @@ def test_hiragana_furiagana():
     TESTS = [
         (u"変換前の漢字の脇に", u"変換前[へんかんまえ]の漢字[かんじ]の脇[わき]に")
     ]
-    kakasi = pykakasi.kakasi()
+    kakasi = pykakasi.kakasi.Kakasi()
     kakasi.setMode("H", None)
     kakasi.setMode("K", None)
     kakasi.setMode("J", "HF")
@@ -201,7 +201,7 @@ def test_wakati_furiagana():
     TESTS = [
         (u"変換前の漢字の脇に", u"変換前[へんかんまえ] の 漢字[かんじ] の 脇[わき] に")
     ]
-    kakasi = pykakasi.wakati()
+    kakasi = pykakasi.kakasi.Wakati()
     kakasi.setMode("f", True)
     converter = kakasi.getConverter()
     for case, result in TESTS:
@@ -214,7 +214,7 @@ def test_kakasi_a2E():
         ("abcdefghijklmnopqrstuvwxyz", u"ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ"),
         ("!\"#$%&'()*+,-./_ {|}~", u"！＂＃＄％＆＇（）＊＋，－．／＿　｛｜｝～")
     ]
-    kakasi = pykakasi.kakasi()
+    kakasi = pykakasi.kakasi.Kakasi()
     kakasi.setMode("a", "E")
     converter = kakasi.getConverter()
     for case, result in TESTS:
@@ -229,7 +229,7 @@ def test_kakasi_E2a():
         (u"！＂＃＄％＆＇（）＊＋，－．／＿　｛｜｝～\uFF1A", "!\"#$%&'()*+,-./_ {|}~:")
     ]
 
-    kakasi = pykakasi.kakasi()
+    kakasi = pykakasi.kakasi.Kakasi()
     kakasi.setMode("E", "a")
     converter = kakasi.getConverter()
     for case, result in TESTS:
@@ -240,7 +240,7 @@ def test_kakasi_E2a_upper():
     TESTS = [
         (u"ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ", "ABCDEFGHIJKLMNOPQRSTUVWXYZ"),
     ]
-    kakasi = pykakasi.kakasi()
+    kakasi = pykakasi.kakasi.Kakasi()
     kakasi.setMode("E", "a")
     kakasi.setMode("U", True)
     converter = kakasi.getConverter()
@@ -252,7 +252,7 @@ def test_kakasi_J2a_upper():
     TESTS = [
         (u"かな漢字", "kana KANJI"),
     ]
-    kakasi = pykakasi.kakasi()
+    kakasi = pykakasi.kakasi.Kakasi()
     kakasi.setMode("J", "a")
     kakasi.setMode("H", "a")
     kakasi.setMode("s", True)
@@ -268,7 +268,7 @@ def test_kakasi_numbers():
         (u"１２３４５６７８９０", "1234567890"),
         (u"一 二 三 四 五 六 七 八 九 〇", "ichi ni san shi go roku shichi hachi kyuu (maru)")
     ]
-    kakasi = pykakasi.kakasi()
+    kakasi = pykakasi.kakasi.Kakasi()
     kakasi.setMode("E", "a")
     kakasi.setMode("J", "a")
     converter = kakasi.getConverter()
@@ -311,7 +311,7 @@ def test_kakasi_passport():
         (u"ふぇ", "fue"),
         (u"ふぉ", "fuo")
     ]
-    kakasi = pykakasi.kakasi()
+    kakasi = pykakasi.kakasi.Kakasi()
     kakasi.setMode("H", "a")
     kakasi.setMode("K", "a")
     kakasi.setMode("J", "a")
@@ -332,7 +332,7 @@ def test_kakasi_passport_specialcase():
         (u"エッチュウ", "etchu"),
         (u"ハッチョウ", "hatcho")
     ]
-    kakasi = pykakasi.kakasi()
+    kakasi = pykakasi.kakasi.Kakasi()
     kakasi.setMode("H", "a")
     kakasi.setMode("K", "a")
     kakasi.setMode("J", "a")
@@ -360,7 +360,7 @@ def test_kakasi_hepburn_nocapital():
         (u"日経新聞", "nikkeishinbun"),
         (u"日本国民は、", "nihonkokumin ha,")
     ]
-    kakasi = pykakasi.kakasi()
+    kakasi = pykakasi.kakasi.Kakasi()
     kakasi.setMode("H", "a")
     kakasi.setMode("K", "a")
     kakasi.setMode("J", "a")
@@ -380,7 +380,7 @@ def test_kakasi_extended_kana():
         (u"\U0001b150", "wi"),
         (u"\U0001b151", "we")
     ]
-    kakasi = pykakasi.kakasi()
+    kakasi = pykakasi.kakasi.Kakasi()
     kakasi.setMode("H", "a")
     kakasi.setMode("K", "a")
     kakasi.setMode("J", "a")
@@ -398,7 +398,7 @@ def test_kakasi_chinese_kanji():
     TESTS = [
         (u"您好", u'您 kou')
     ]
-    kakasi = pykakasi.kakasi()
+    kakasi = pykakasi.kakasi.Kakasi()
     kakasi.setMode("H", "a")
     kakasi.setMode("K", "a")
     kakasi.setMode("J", "a")
@@ -415,7 +415,7 @@ def test_kakasi_chinese_kanji_replace():
     TESTS = [
         (u"您好", u'??? kou')
     ]
-    kakasi = pykakasi.kakasi()
+    kakasi = pykakasi.kakasi.Kakasi()
     kakasi.setMode("H", "a")
     kakasi.setMode("K", "a")
     kakasi.setMode("J", "a")

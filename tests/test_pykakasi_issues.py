@@ -2,14 +2,14 @@
 
 import six
 
-import pykakasi
+import pykakasi.kakasi
 
 
 def test_issues60():
     TESTS = [
         (u"市立", u"しりつ")
     ]
-    kakasi = pykakasi.kakasi()
+    kakasi = pykakasi.kakasi.Kakasi()
     kakasi.setMode("H", None)
     kakasi.setMode("K", None)
     kakasi.setMode("J", "H")
@@ -27,7 +27,7 @@ def test_issues59():
         (u"じゃーん", u"じゃーん"),
         (u"ヷヸヹヺ", u"ヷヸヹヺ")
     ]
-    kakasi = pykakasi.kakasi()
+    kakasi = pykakasi.kakasi.Kakasi()
     kakasi.setMode("H", None)
     kakasi.setMode("K", "H")
     kakasi.setMode("J", None)
@@ -49,7 +49,7 @@ def test_issue66():
         (u"代々木", "yoyogi"),
         (u"次代々木", "tugiyoyogi")
     ]
-    kakasi = pykakasi.kakasi()
+    kakasi = pykakasi.kakasi.Kakasi()
     kakasi.setMode("J", "a")
     kakasi.setMode("r", "Kunrei")
     conv = kakasi.getConverter()
@@ -62,7 +62,7 @@ def test_issues68():
         (u"", u""),
         (u"埇", u"よう")
     ]
-    kks = pykakasi.kakasi()
+    kks = pykakasi.kakasi.Kakasi()
     kks.setMode("J", "H")
     convert = kks.getConverter()
     for case, result in TESTS:
@@ -70,7 +70,7 @@ def test_issues68():
 
 
 def test_issue68_2():
-    kks = pykakasi.kakasi()
+    kks = pykakasi.kakasi.Kakasi()
     kks.setMode("J", "H")
     convert = kks.getConverter()
     for case in range(0x3400, 0xdfff):
@@ -83,7 +83,7 @@ def test_issue72():
     TESTS = [
         (u"㐂", u"き")
     ]
-    kks = pykakasi.kakasi()
+    kks = pykakasi.kakasi.Kakasi()
     kks.setMode("J", "H")
     convert = kks.getConverter()
     for case, result in TESTS:
@@ -96,7 +96,7 @@ def test_issue78():
         (u"これは人類普遍であり、かかる原理に",
          u"これは じんるいふへん であり、 かかる げんり に")
     ]
-    kks = pykakasi.kakasi()
+    kks = pykakasi.kakasi.Kakasi()
     kks.setMode("J", "H")
     kks.setMode("s", True)
     convert = kks.getConverter()

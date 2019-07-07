@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import pykakasi
-import pykakasi.kanji
-import pykakasi.scripts
+import pykakasi.kakasi
 
 
 def test_itaiji():
@@ -13,7 +11,7 @@ def test_itaiji():
         (u"壱弍", u"一二"),
         (u"森鷗外", u"森鴎外"),
     ]
-    j = pykakasi.kanji.J2("H")
+    j = pykakasi.kakasi.J2("H")
     for case, result in I_TEST:
         assert j.itaiji_conv(case) == result
 
@@ -26,7 +24,7 @@ def test_J2H():
         (u"大きい", (u"おおきい", 3)),
         (u"日本国民は、", (u"にほんこくみん", 4))
     ]
-    j = pykakasi.kanji.J2("H")
+    j = pykakasi.kakasi.J2("H")
     for case, result in TESTS:
         assert j.convert(case) == result
 
@@ -40,7 +38,7 @@ def test_H2a():
         (u"しつもん", ("shi", 1)),
         (u"ちがい", ("chi", 1)),
     ]
-    h = pykakasi.scripts.H2("a")
+    h = pykakasi.kakasi.H2("a")
     for case, result in TESTS:
         assert h.convert(case) == result
 
@@ -54,7 +52,7 @@ def test_H2K():
         (u"しつもん", (u"シツモン", 4)),
         (u"ちがい", (u"チガイ", 3)),
     ]
-    h = pykakasi.scripts.H2("K")
+    h = pykakasi.kakasi.H2("K")
     for case, result in TESTS:
         assert h.convert(case) == result
 
@@ -68,7 +66,7 @@ def test_K2H():
         (u"シツモン", (u"しつもん", 4)),
         (u"チガイ", (u"ちがい", 3)),
     ]
-    h = pykakasi.scripts.K2("H")
+    h = pykakasi.kakasi.K2("H")
     for case, result in TESTS:
         assert h.convert(case) == result
 
@@ -83,7 +81,7 @@ def test_K2a():
         (u"チガイ", ("chi", 1)),
         (u"ジ", ("ji", 1)),
     ]
-    h = pykakasi.scripts.K2("a")
+    h = pykakasi.kakasi.K2("a")
     for case, result in TESTS:
         assert h.convert(case) == result
 
@@ -104,7 +102,7 @@ def test_H2a_kunrei():
         (u"た", ("ta", 1)), (u"ち", ("ti", 1)), (u"つ", ("tu", 1)),
         (u"て", ("te", 1)), (u"と", ("to", 1))
     ]
-    h = pykakasi.scripts.H2("a", method="Kunrei")
+    h = pykakasi.kakasi.H2("a", method="Kunrei")
     for case, result in TESTS:
         assert h.convert(case) == result
 
@@ -129,7 +127,7 @@ def test_K2a_kunrei():
         (u"タ", ("ta", 1)), (u"チ", ("ti", 1)), (u"ツ", ("tu", 1)),
         (u"テ", ("te", 1)), (u"ト", ("to", 1))
     ]
-    h = pykakasi.scripts.K2("a", method="Kunrei")
+    h = pykakasi.kakasi.K2("a", method="Kunrei")
     for case, result in TESTS:
         assert h.convert(case) == result
 
@@ -144,7 +142,7 @@ def test_H2a_passport():
         (u"なんば", ("na", 1)),
         (u"んば", ("mba", 2))
     ]
-    h = pykakasi.scripts.H2("a", method="Passport")
+    h = pykakasi.kakasi.H2("a", method="Passport")
     for case, result in TESTS:
         assert h.convert(case) == result
 
@@ -156,7 +154,7 @@ def test_J2K():
         (u"大きい", (u"オオキイ", 3)),
         (u"日本国民は、", (u"ニホンコクミン", 4))
     ]
-    j = pykakasi.kanji.J2("K")
+    j = pykakasi.kakasi.J2("K")
     for case, result in TESTS:
         assert j.convert(case) == result
 
@@ -169,7 +167,7 @@ def test_J2a():
         (u"日本国民は、", ("nihonkokumin", 4)),
         (u"\u31a0", ("", 0))  # non japanese character
     ]
-    j = pykakasi.kanji.J2("a")
+    j = pykakasi.kakasi.J2("a")
     for case, result in TESTS:
         assert j.convert(case) == result
 
@@ -180,7 +178,7 @@ def test_a2E():
         ("abcdefghijklmnopqrstuvwxyz", u"ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ"),
         ("!\"#$%&'()*+,-./_ {|}~", u"！＂＃＄％＆＇（）＊＋，－．／＿　｛｜｝～")
     ]
-    a = pykakasi.scripts.A2("E")
+    a = pykakasi.kakasi.A2("E")
     for case, result in TESTS:
         for i in range(len(case)):
             assert a.convert(case[i]) == (result[i], 1)
@@ -208,7 +206,7 @@ def test_sym2a():
           "0",
           "a", "ya", "e", "E"])
     ]
-    s = pykakasi.scripts.Sym2("a")
+    s = pykakasi.kakasi.Sym2("a")
     for case, result in TESTS:
         for i in range(len(case)):
             assert tuple([case[i] == s.convert(case[i])]), tuple([case[i], (result[i], 1)])

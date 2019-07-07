@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import pykakasi
+import pykakasi.kakasi
 
 
 def test_kakasi_constitution():
@@ -21,7 +21,7 @@ def test_kakasi_constitution():
              "gakorewo Kyouju suru. koreha Jinruifuhen no Genri deari, kono Kenpou ha, kakaru Genri ni Motozuku " \
              "monodearu. wareraha, koreni Hansu ru Issai no Kenpou, Hourei Oyobi Shouchoku wo Haijo suru."
 
-    kakasi = pykakasi.kakasi()
+    kakasi = pykakasi.kakasi.Kakasi()
     kakasi.setMode("H", "a")
     kakasi.setMode("K", "a")
     kakasi.setMode("J", "a")
@@ -49,6 +49,6 @@ def test_wakati_constitution():
              u"がこれを 享受 する。これは 人類普遍 の 原理 であり、この 憲法 は、かかる 原理 に 基く ものである。われらは、" \
              u"これに 反す る 一切 の 憲法 、 法令 及び 詔勅 を 排除 する。"
 
-    wakati = pykakasi.wakati()
+    wakati = pykakasi.kakasi.Wakati()
     converter = wakati.getConverter()
     assert converter.do(original_text) == result

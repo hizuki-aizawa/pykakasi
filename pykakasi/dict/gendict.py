@@ -4,7 +4,7 @@ import re
 from klepto.archives import file_archive
 from six import unichr
 
-root_dir = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+root_dir = os.path.abspath(os.path.dirname(__file__))
 
 
 class Genkanwadict(object):
@@ -81,7 +81,7 @@ class Genkanwadict(object):
             ('kunreihira.utf8', 'kunreihira3.db'),
             ('passporthira.utf8', 'passporthira3.db')
         ]
-        srcdir = os.path.join(root_dir, 'src', 'data')
+        srcdir = os.path.join(root_dir, 'data')
         if not os.path.exists(dstdir):
             os.makedirs(dstdir)
         for (src_f, pkl_f) in DICTS:

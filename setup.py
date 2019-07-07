@@ -15,12 +15,12 @@ root_dir = os.path.abspath(os.path.dirname(__file__))
 class MyBuild(build_py):
 
     def run(self):
+        sys.path.insert(1, os.path.join(root_dir, 'pykakasi'))
+        from dict import Genkanwadict
         build_py.run(self)
-        sys.path.insert(1, os.path.join(root_dir, 'src'))
-        from kakasidict import Genkanwadict
         if not self.dry_run:
             kanwa = Genkanwadict()
-            dstdir = os.path.join(self.build_lib, 'pykakasi', 'data')
+            dstdir = os.path.join(self.build_lib, 'pykakasi', 'dict')
             kanwa.generate_dictionaries(dstdir)
 
 
@@ -29,7 +29,7 @@ def readme():
         return f.read()
 
 
-with open(os.path.join(root_dir, 'src', package_name, '__init__.py')) as f:
+with open(os.path.join(root_dir, 'pykakasi', 'kakasi', '__init__.py')) as f:
     init_text = f.read()
     version = re.search(r'__version__\s*=\s*[\'\"](.+?)[\'\"]', init_text).group(1)
     license = re.search(r'__license__\s*=\s*[\'\"](.+?)[\'\"]', init_text).group(1)
@@ -52,14 +52,11 @@ setup(name=package_name,
       long_description=readme(),
       author=author,
       author_email=author_email,
-      package_dir={'pykakasi': 'src/pykakasi'},
-      packages=[package_name],
+      packages=['pykakasi.kakasi', 'pykakasi.dict'],
       provides=[package_name],
       scripts=["bin/kakasi"],
       include_package_data=True,
-      package_data={'src/data': ['*.utf8']},
       tests_require=['pytest', 'coverage'],
-      setup_requires=['six', 'klepto'],
       install_requires=['six', 'klepto'],
       extras_require={'dev': ['pytest']},
       cmdclass={'build_py': MyBuild},
