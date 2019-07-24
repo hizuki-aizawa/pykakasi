@@ -72,6 +72,7 @@ class Genkanwadict(object):
         dic.dump()
 
     def generate_dictionaries(self, dstdir):
+        print('kiterude: ' + dstdir)
         DICTS = [
             ('itaijidict.utf8', 'itaijidict3.db'),
             ('hepburndict.utf8', 'hepburndict3.db'),
