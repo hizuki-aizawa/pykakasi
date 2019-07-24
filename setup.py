@@ -20,8 +20,7 @@ class MyBuild(build_py):
         from kakasidict import Genkanwadict
         if not self.dry_run:
             kanwa = Genkanwadict()
-            dstdir = os.path.join(self.build_lib, 'pykakasi', 'data')
-            kanwa.generate_dictionaries(dstdir)
+            kanwa.generate_dictionaries("/tmp/pykakasi/data")
 
 
 def readme():
